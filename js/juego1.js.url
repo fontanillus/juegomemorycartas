@@ -1,0 +1,50 @@
+const emojis = ['🌞', '🌙', '⭐', '⚡', '🔥', '💧', '🍀', '🌹', '🍎', '🐶', '🐱', '🦊', '🐸', '🐵', '🐘', '🦉', '🐢', '🐝', '🦄', '🧸', '🎩', '👑', '🧪', '🕹️']; // 24 emojis únicos
+
+let baraja = [...emojis, ...emojis];
+
+const TABLERO = document.getElementById('tablero');
+const TURNO_DISPLAY = document.getElementById('turnoActual');
+const JUGADOR_PUNTOS = document.getElementById('jugadorPuntos');
+const CPU_PUNTOS = document.getElementById('cpuPuntos');
+let cartasDOM; //guardará la lista de nodos con las cartas
+
+function crearTablero() {
+  TABLERO.innerHTML = '';
+  for (let i = 0; i < baraja.length; i++) {
+    const emoji = baraja[i];
+    const carta = document.createElement('div');
+    carta.className = 'carta oculta';
+    carta.dataset.index = i;
+/* 
+dataset: Es una propiedad especial que permite acceder y modificar los data attributes de HTML. 
+Un data attribute (o atributo de datos) es una forma de guardar información extra en elementos HTML sin alterar su estructura ni afectar su presentación visual. 
+Es como esconder pequeñas notas dentro del HTML que el navegador ignora, pero que se pueden leer desde JavaScript.
+El atributo que se crea a través de esta instrucción será 
+data-index = valor de i.
+Se pueden dar tantos atributos dataset como se necesite.
+Los data-attributes se guardan como strings
+*/
+    carta.textContent = emoji;
+    carta.addEventListener('click', () => seleccionarCarta(i));
+/* Cuando se haga clic, entonces ejecuta seleccionarCarta(i) */
+
+    TABLERO.appendChild(carta);
+  } //fin for
+  cartasDOM = document.querySelectorAll('.carta');
+  /* 
+  document.querySelectorAll('.carta') 
+  busca en el documento todos los elementos HTML 
+  que tengan la clase carta y los guarda en una lista de nodos
+  que es como un array de solo lectura */
+}
+
+function seleccionarCarta(indice) {
+  const carta = cartasDOM[indice];
+  carta.classList.toggle('oculta');
+  /* 
+    Si la carta tiene la clase oculta, la quita.
+    Si no la tiene, la agrega.
+  */
+}
+
+crearTablero();
