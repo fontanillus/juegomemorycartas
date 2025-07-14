@@ -136,6 +136,7 @@ h1 {
 }
 
 /* Escritorio (8x6) */
+/* Escritorio (8x6) */
 @media (min-width: 769px) {
   .tablero {
     grid-template-columns: repeat(8, 60px);
@@ -144,15 +145,17 @@ h1 {
   .carta {
     font-size: 40px;
   }
+}
 
-​@media (max-height: 480px) and (orientation: landscape) {
+/* Escritorio con poca altura (12x4) */
+@media (max-height: 480px) and (orientation: landscape) {
   .tablero {
-    grid-template-columns: repeat(12, 60px);
+    grid-template-columns: repeat(12, 48px);
   }
 
   .carta {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     font-size: 24px;
   }
-  
+}
