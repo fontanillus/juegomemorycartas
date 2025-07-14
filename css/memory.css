@@ -1,18 +1,16 @@
-html,
+/* ==== Estilos base generales ==== */
 body {
   font-family: sans-serif;
-  height: 100vh;
+  height: 100dvh; /* Altura dinámica real en móviles */
   margin: 0;
-  overflow: hidden;
-  /* evita el scroll */
+  overflow: auto; /* Permite scroll si es necesario */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
 
-h1,
-#puntos {
+h1, #puntos {
   margin: 3px 0;
 }
 
@@ -25,6 +23,7 @@ h1 {
   font-size: 14px;
 }
 
+/* ==== Animación de revelar carta ==== */
 @keyframes revelarCarta {
   0% {
     transform: rotateY(0deg);
@@ -40,10 +39,11 @@ h1 {
   }
 }
 
+/* ==== Estilos de cartas ==== */
 .carta {
-  width: 40px;
-  height: 40px;
-  font-size: 32px;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 10%;
@@ -66,27 +66,31 @@ h1 {
   pointer-events: none;
 }
 
+/* ==== Tablero base ==== */
 .tablero {
-  display: grid; 
-  /* .tablero usa Grid para distribuir sus hijos */
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  flex-grow: 1;  
-  /* Si hay espacio libre dentro del padre flex, ¡ocuparlo! */
+  display: grid;
+  grid-template-columns: repeat(4, 60px); /* valor base (móviles) */
+  gap: 5px 8px;
   justify-content: center;
-  /* Centra las columnas del grid dentro del contenedor */
-  row-gap: 5px;                     
-  /* Espacio vertical entre las filas */
-  column-gap: 8px;                 
-  /* Espacio horizontal entre las columnas */
-  margin: 0.5rem auto;             
-  /* Márgenes arriba/abajo y centrado horizontal con auto */
-  max-width: 100vw;                
-  /* Que no exceda el ancho visible de la ventana */
-  max-height: 100vh;               
-  /* Que no exceda el alto visible de la ventana */
+  flex-grow: 1;
+  margin: 0.5rem auto;
+  max-width: 100vw;
+  padding: 10px;
+  overflow-y: auto; /* permite scroll si hay muchas filas */
 }
 
-@media (max-width: 480px) {
+/* ==== MEDIA QUERIES ADAPTATIVAS ==== */
+
+/* Teléfonos en modo retrato (4x12) */
+@media (max-width: 480px) and (orientation: portrait) {
+  .tablero {
+    grid-template-columns: repeat(4, 60px);
+  }
+
+  .carta {
+    font-size: 24px;
+  }
+
   h1 {
     font-size: 20px;
     margin: 8px 0;
@@ -98,10 +102,52 @@ h1 {
   }
 }
 
-/* Teléfonos (4 columnas de 12 filas) */
-@media (max-width: 480px) {
+/* Teléfonos en modo horizontal (6x8) */
+@media (max-width: 480px) and (orientation: landscape) {
   .tablero {
-    grid-template-columns: repeat(4, 60px);
+    grid-template-columns: repeat(6, 60px);
+  }
+
+  .carta {
+    font-size: 26px;
+  }
+}
+
+/* Tablets en modo vertical (5x10) */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
+  .tablero {
+    grid-template-columns: repeat(5, 60px);
+  }
+
+  .carta {
+    font-size: 26px;
+  }
+}
+
+/* Tablets en modo horizontal (6x8) */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+  .tablero {
+    grid-template-columns: repeat(6, 60px);
+  }
+
+  .carta {
+    font-size: 28px;
+  }
+}
+
+/* Escritorio (8x6) */
+@media (min-width: 769px) {
+  .tablero {
+    grid-template-columns: repeat(8, 60px);
+  }
+
+  .carta {
+    font-size: 40px;
+  }
+
+​@media (max-height: 480px) and (orientation: landscape) {
+  .tablero {
+    grid-template-columns: repeat(12, 60px);
   }
 
   .carta {
@@ -109,32 +155,4 @@ h1 {
     height: 60px;
     font-size: 24px;
   }
-}
-
-/* Tablets (6 columnas de 8 filas) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .tablero {
-    grid-template-columns: repeat(6, 60px);
-  }
-
-  .carta {
-    width: 60px;
-    height: 60px;
-    font-size: 26px;
-  }
-}
-
-/* Escritorio (8 columnas de 6 filas) */
-@media (min-width: 769px) {
-  .tablero {
-    grid-template-columns: repeat(8, 60px);
-  }
-
-  .carta {
-    width: 60px;
-    height: 60px;
-    font-size: 40px;
-  }
-}
-
-
+  
