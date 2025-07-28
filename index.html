@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emoji Memory</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/memory.css" />
+  </head>
+  <body>
+    <h1>Emoji Memory: <span id="turnoActual">Turno del jugador</span></h1>
+    <p id="puntos">
+      <strong>Jugador:</strong> <span id="jugadorPuntos">0</span> cartas |
+      <strong>Ordenador:</strong> <span id="cpuPuntos">0</span> cartas
+    </p>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emoji Memory</title>
-  <link rel="stylesheet" href="./css/main.css">
-</head>
+    <!-- Añadido el select para elegir el tema -->
+    <div>
+      <label for="tema">Selecciona un tema: </label>
+      <select id="tema">
+        <option value="animales">Animales</option>
+        <option value="frutas">Frutas</option>
+        <option value="transportes">Transportes</option>
+        <option value="corea">Corea</option>
+        <option value="emojis">Emojis</option>
+      </select>
+    </div>
 
-<body>
-  <h1>Emoji Memory: <span id="turnoActual">Turno del jugador</span></h1>
-  <p id="puntos">
-    <strong>Jugador:</strong>
-    <span id="jugadorPuntos">0</span> cartas | 
-    <strong>Ordenador:</strong> 
-    <span id="cpuPuntos">0</span> cartas
-  </p>
-  <div class="tablero" id="tablero"></div>
-  <script src="./js/juego1.js.url"></script>
-</body>
+    <div class="tablero" id="tablero"></div>
 
+    <script src="./js/juego1.js"></script>
+  </body>
 </html>
+
